@@ -1,7 +1,6 @@
 'use strict';
 
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
-const urls = require('./lib/prember-urls');
 
 module.exports = function(defaults) {
   var includePolyfill = process.env.EMBER_ENV === 'production' || process.env.CI;
@@ -17,7 +16,6 @@ module.exports = function(defaults) {
     minifyJS: {
       enabled: false
     },
-
     snippetPaths: ['tests/dummy/snippets'],
     snippetSearchPaths: ['app', 'tests/dummy/app', 'addon'],
 
@@ -25,13 +23,7 @@ module.exports = function(defaults) {
       useScss: true
     },
 
-    babel: babelOptions,
-
-    prember: {
-      urls,
-      // GitHub Pages uses this filename to serve 404s
-      emptyFile: '404.html'
-    }
+    // babel: babelOptions
   });
 
   /*

@@ -32,15 +32,15 @@
 
 <p>
 {{! BEGIN-SNIPPET debounced-search-with-cancelation-template }}
-  <input type="text" oninput={{perform searchRepo value="target.value"}}
+  <input type="text" oninput={{action (perform searchRepo) value="target.value"}}
          placeholder="Search GitHub..." />
 
-  {{#if searchRepo.isRunning}}
-    {{loading-spinner}}
-  {{/if}}
+  <div>Has Results:</div>
+  <div>{{hasResults}}</div>
 
+  <div>Results (bug - nothing will appear):</div>
   <ul>
-    {{#each searchRepo.lastSuccessful.value as |repo|}}
+    {{#each lastSuccessful as |repo|}}
       <li>{{repo.full_name}}</li>
     {{/each}}
   </ul>

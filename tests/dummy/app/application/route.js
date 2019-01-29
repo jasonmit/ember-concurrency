@@ -5,11 +5,13 @@ import Ember from 'ember';
 export default Route.extend({
   fastboot: inject(),
 
-  beforeModel() {
-    if (!Ember.testing && !this.get('fastboot.isFastBoot')) {
-      this.router.on('didTransition', () => {
+  actions: {
+    didTransition() {
+      if (!Ember.testing && !this.get('fastboot.isFastBoot')) {
         window.scrollTo(0,0);
-      });
+      }
+
+      return true;
     }
   }
 });
